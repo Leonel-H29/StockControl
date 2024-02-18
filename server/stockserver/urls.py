@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from Producto.urls import router as routerProductos
-from Proveedor.urls import router as routerProveedores
+from Compra.urls import router as routerCompras
 
 
 class DefaultRouter(routers.DefaultRouter):
@@ -21,8 +20,7 @@ class DefaultRouter(routers.DefaultRouter):
         self.registry.extend(router.registry)
 
 router = DefaultRouter()
-router.extend(routerProductos)
-router.extend(routerProveedores)
+router.extend(routerCompras)
 
 
 url = 'api/'

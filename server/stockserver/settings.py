@@ -25,8 +25,7 @@ DRF = [
 ]
 
 LOCAL_APPS = [
-    'Producto',
-    'Proveedor',
+    'Compra'
 ]
 
 INSTALLED_APPS = [
