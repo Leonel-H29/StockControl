@@ -6,6 +6,11 @@ export class proveedorService {
     return await response.json();
   };
 
+  getProveedorById = async (id: any) => {
+    const response = await fetch(`${baseUrl}${id}/`);
+    return await response.json();
+  };
+
   createProveedor = async (proveedor: any) => {
     const response = await fetch(baseUrl, {
       method: 'POST',
@@ -13,6 +18,27 @@ export class proveedorService {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(proveedor),
+    });
+    return await response.json();
+  };
+
+  updateProveedor = async (id: any, proveedor: any) => {
+    const response = await fetch(`${baseUrl}${id}/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(proveedor),
+    });
+    return await response.json();
+  };
+
+  deleteProveedor = async (id: any) => {
+    const response = await fetch(`${baseUrl}${id}/`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
     return await response.json();
   };

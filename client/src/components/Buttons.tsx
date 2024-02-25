@@ -1,5 +1,6 @@
 'use client';
 import { productosService } from '@/services/productosService';
+import { proveedorService } from '@/services/proveedorSevice';
 import { useRouter } from 'next/navigation';
 
 export function ButtonsCreateComponents(params: { component: string }) {
@@ -41,15 +42,15 @@ export function ButtonsCreateComponents(params: { component: string }) {
 export function ButtonsTableComponents(params: { id: any; component: string }) {
   const router = useRouter();
   const Iprod = new productosService();
-
+  const IProv = new proveedorService();
   const Editar = () => {
     console.log('id:', params.id);
     console.log('component: ', params.component);
+    router.refresh();
     if (params.component === 'producto') {
-      router.refresh();
       router.push(`/compras/productos/editar/${params.id}`);
     } else {
-      alert('Editar proveedor');
+      router.push(`/compras/proveedores/editar/${params.id}`);
     }
   };
 
@@ -65,6 +66,11 @@ export function ButtonsTableComponents(params: { id: any; component: string }) {
         router.push('/compras/productos/listado/');
         router.refresh();
       } else {
+        await IProv.deleteProveedor(params.id)
+          .then(() => {
+            alert('Proveedor eliminado exitosamente!');
+          })
+          .catch(() => console.log('Error al eliminar el dato'));
         router.push('/compras/proveedores/listado/');
         router.refresh();
       }

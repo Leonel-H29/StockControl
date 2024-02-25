@@ -1,3 +1,7 @@
+import {
+  ButtonsCreateComponents,
+  ButtonsTableComponents,
+} from '@/components/Buttons';
 import { proveedorService } from '@/services/proveedorSevice';
 
 async function ListadoProveedoresPage() {
@@ -15,6 +19,8 @@ async function ListadoProveedoresPage() {
             </h1>
           </div>
           <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+            <ButtonsCreateComponents component={'proveedor'} />
+            {/* 
             <button
               className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
               type="button"
@@ -35,6 +41,7 @@ async function ListadoProveedoresPage() {
               </svg>
               PROVEEDOR
             </button>
+            */}
           </div>
         </div>
       </div>
@@ -75,6 +82,11 @@ async function ListadoProveedoresPage() {
                   {prov.cuit}
                 </td>
                 <td>
+                  <ButtonsTableComponents
+                    id={prov.idproveedor}
+                    component={'proveedor'}
+                  />
+                  {/* 
                   <button
                     className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
@@ -113,6 +125,7 @@ async function ListadoProveedoresPage() {
                       />
                     </svg>
                   </button>
+                */}
                 </td>
               </tr>
             ))}
