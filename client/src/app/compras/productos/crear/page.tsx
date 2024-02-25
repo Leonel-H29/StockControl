@@ -229,6 +229,7 @@ function CrearProductoPage(params: any) {
             <button
               type="button"
               className="text-sm font-semibold leading-6 text-gray-900"
+              onClick={() => router.push('/compras/productos/listado')}
             >
               Cancelar
             </button>
