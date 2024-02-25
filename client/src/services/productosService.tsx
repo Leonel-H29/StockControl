@@ -6,9 +6,25 @@ export class productosService {
     return await response.json();
   };
 
+  getProductoById = async (id: any) => {
+    const response = await fetch(`${baseUrl}${id}/`);
+    return await response.json();
+  };
+
   createProducto = async (producto: any) => {
     const response = await fetch(baseUrl, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(producto),
+    });
+    return await response.json();
+  };
+
+  updateProducto = async (id: any, producto: any) => {
+    const response = await fetch(`${baseUrl}${id}/`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },

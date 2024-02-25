@@ -5,18 +5,39 @@ import { productosService } from '@/services/productosService';
 import { proveedorService } from '@/services/proveedorSevice';
 import { useRouter } from 'next/navigation';
 
-function CrearProductoPage() {
+function CrearProductoPage(params: any) {
   const [proveedores, setProveedores] = useState([]);
   const [nombre, setNombre] = useState('');
   const [precio, setPrecio] = useState('');
   const [stockActual, setStockActual] = useState('');
   const [proveedor, setProveedor] = useState('');
 
+  const IProv = new proveedorService();
+  const IProd = new productosService();
+
   const router = useRouter();
 
   useEffect(() => {
+    console.log(params.params);
+    //console.log('Id: ', params.id);
+    const id = params.params.id; // Accede a id dentro de params
+    console.log('Id: ', id);
+    if (id) {
+      IProd.getProductoById(id)
+        .then((data) => {
+          setNombre(data.nombre);
+          setPrecio(data.precio);
+          setStockActual(data.stock_actual);
+          setProveedor(data.proveedor.idproveedor);
+        })
+        .catch((err) => {
+          console.log('No se ha podido obtener los datos correctamente');
+        });
+    }
+  }, []);
+
+  useEffect(() => {
     const cargarProveedores = async () => {
-      const IProv = new proveedorService();
       const proveedoresData = await IProv.getProveedores();
       setProveedores(proveedoresData);
       if (proveedoresData) {
@@ -41,7 +62,7 @@ function CrearProductoPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const IProd = new productosService();
+
     try {
       const producto = {
         nombre,
@@ -50,12 +71,40 @@ function CrearProductoPage() {
         proveedor: Number(proveedor),
       };
       console.log(producto);
-      const res = await IProd.createProducto(producto);
-      console.log(res);
-      if (res.status === 201) {
-        alert('Producto creado con éxito');
+
+      if (params.params.id) {
+        // Actualizo el registro
+
+        const res = await IProd.updateProducto(params.params.id, producto)
+          .then((data) => {
+            console.log(data);
+            alert('Producto actualizado con éxito');
+          })
+          .catch((err) => {
+            console.log(err);
+            alert('Error al actualizar el producto');
+          });
+        console.log(res);
       } else {
-        alert('Error al crear el producto');
+        const res = await IProd.createProducto(producto)
+          .then((data) => {
+            console.log(data);
+            alert('Producto creado con éxito');
+          })
+          .catch((err) => {
+            console.log(err);
+            alert('Error al crear el producto');
+          });
+        console.log(res);
+
+        /*
+        console.log(res);
+        if (res.status === 201) {
+          alert('Producto creado con éxito');
+        } else {
+          alert('Error al crear el producto');
+        }
+        */
       }
 
       // Reset form or redirect
@@ -64,6 +113,7 @@ function CrearProductoPage() {
       console.error(error);
     } finally {
       router.refresh();
+      router.push('/compras/productos/listado');
     }
   };
 
@@ -73,7 +123,7 @@ function CrearProductoPage() {
         <div className="flex flex-wrap items-center">
           <div className="relative w-full px-4 max-w-full flex-grow flex-1">
             <h1 className="font-semibold text-base text-blueGray-700">
-              Crear producto
+              {params.params.id ? 'Editar Producto' : 'Crear Producto'}
             </h1>
           </div>
         </div>
@@ -186,7 +236,7 @@ function CrearProductoPage() {
               type="submit"
               className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Crear Producto
+              Guardar
             </button>
           </div>
         </form>
