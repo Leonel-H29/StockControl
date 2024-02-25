@@ -33,5 +33,15 @@ export class productosService {
     return await response.json();
   };
 
+  deleteProducto = async (id: any) => {
+    const response = await fetch(`${baseUrl}${id}/`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return await response.json();
+  };
+
   // Agrega métodos para actualizar y eliminar productos
 }
