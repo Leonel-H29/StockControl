@@ -5,14 +5,16 @@ import { useRouter } from 'next/navigation';
 
 export function ButtonsCreateComponents(params: { component: string }) {
   const router = useRouter();
+  const component = params.component;
 
   return (
     <div>
       <button
         className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
+        title={`Agregar ${component}`}
         onClick={() => {
-          if (params.component === 'producto') {
+          if (component === 'producto') {
             router.push('/compras/productos/crear/');
           } else {
             router.push('/compras/proveedores/crear/');
@@ -33,7 +35,7 @@ export function ButtonsCreateComponents(params: { component: string }) {
             d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
           />
         </svg>
-        {params.component === 'producto' ? 'PRODUCTO' : 'PROVEEDOR'}
+        {component === 'producto' ? 'PRODUCTO' : 'PROVEEDOR'}
       </button>
     </div>
   );
@@ -83,6 +85,7 @@ export function ButtonsTableComponents(params: { id: any; component: string }) {
       <button
         className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
+        title="Editar registro"
         onClick={() => Editar()}
       >
         <svg
@@ -105,6 +108,7 @@ export function ButtonsTableComponents(params: { id: any; component: string }) {
         className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
         onClick={() => Delete()}
+        title="Eliminar registro"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

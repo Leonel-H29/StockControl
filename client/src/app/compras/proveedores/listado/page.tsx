@@ -66,7 +66,7 @@ async function ListadoProveedoresPage() {
             </tr>
           </thead>
 
-          <tbody>
+          <tbody style={{ maxHeight: '22.5rem', overflowY: 'auto' }}>
             {proveedores.map((prov: any) => (
               <tr key={prov.idproveedor}>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">

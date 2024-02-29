@@ -70,7 +70,7 @@ async function ListadoProductosPage() {
             </tr>
           </thead>
 
-          <tbody>
+          <tbody style={{ maxHeight: '22.5rem', overflowY: 'auto' }}>
             {productos.map((prod: any) => (
               <tr key={prod.idproducto}>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
@@ -99,6 +99,7 @@ async function ListadoProductosPage() {
           </tbody>
         </table>
       </div>
+
       <div className="flex justify-end space-x-4 border-t border-gray-100 px-5 py-4 text-2xl font-bold">
         <div>Cantidad de productos: </div>
         <div className="text-blue-600">{productos.length}</div>
