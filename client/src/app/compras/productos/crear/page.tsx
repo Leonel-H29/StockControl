@@ -131,10 +131,7 @@ function CrearProductoPage(params: any) {
       <div className="block w-full overflow-x-auto">
         <form onSubmit={handleSubmit} className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">
-              Información del Producto
-            </h2>
-            <p className="mt-1 text-sm leading-6 text-gray-600">
+            <p className="mt-1 text-sm leading-6 text-white-600">
               Ingresa la información del producto.
             </p>
 
@@ -142,7 +139,7 @@ function CrearProductoPage(params: any) {
               <div className="sm:col-span-3">
                 <label
                   htmlFor="nombre"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-white-900"
                 >
                   Nombre
                 </label>
@@ -162,7 +159,7 @@ function CrearProductoPage(params: any) {
               <div className="sm:col-span-3">
                 <label
                   htmlFor="precio"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-white-900"
                 >
                   Precio
                 </label>
@@ -182,7 +179,7 @@ function CrearProductoPage(params: any) {
               <div className="sm:col-span-4">
                 <label
                   htmlFor="stockActual"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-white-900"
                 >
                   Stock Actual
                 </label>
@@ -202,7 +199,7 @@ function CrearProductoPage(params: any) {
               <div className="sm:col-span-3">
                 <label
                   htmlFor="proveedor"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-white-900"
                 >
                   Proveedor
                 </label>
@@ -228,7 +225,7 @@ function CrearProductoPage(params: any) {
           <div className="mt-6 flex items-center justify-end gap-x-6">
             <button
               type="button"
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="text-sm font-semibold leading-6 text-white-900"
               onClick={() => router.push('/compras/productos/listado')}
             >
               Cancelar
