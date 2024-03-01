@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { proveedorService } from '@/services/proveedorSevice';
+import { toast } from 'sonner';
 
 export default function CrearProveedorPage(params: any) {
   const [nombre, setNombre] = useState('');
@@ -45,28 +46,33 @@ export default function CrearProveedorPage(params: any) {
         const res = await IProv.updateProveedor(params.params.id, proveedor)
           .then((data) => {
             console.log(data);
-            alert('Proveedor actualizado con éxito');
+            //alert('Proveedor actualizado con éxito');
+            toast.success('Proveedor actualizado con éxito');
           })
           .catch((err) => {
             console.log(err);
-            alert('Error al actualizar el proveedor');
+            //alert('Error al actualizar el proveedor');
+            toast.error('Error al actualizar el proveedor');
           });
         console.log(res);
       } else {
         const res = await IProv.createProveedor(proveedor)
           .then((data) => {
             console.log(data);
-            alert('Proveedor creado con éxito');
+            //alert('Proveedor creado con éxito');
+            toast.success('Proveedor creado con éxito');
           })
           .catch((err) => {
             console.log(err);
-            alert('Error al crear el proveedor');
+            //alert('Error al crear el proveedor');
+            toast.error('Error al crear el proveedor');
           });
         console.log(res);
       }
     } catch (error) {
-      alert('Error al crear el proveedor');
+      //alert('Error al crear el proveedor');
       console.error(error);
+      toast.error('Error al crear el proveedor');
     } finally {
       router.refresh();
       router.push('/compras/proveedores/listado');

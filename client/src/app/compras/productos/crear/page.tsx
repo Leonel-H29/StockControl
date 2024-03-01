@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { productosService } from '@/services/productosService';
 import { proveedorService } from '@/services/proveedorSevice';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 function CrearProductoPage(params: any) {
   const [proveedores, setProveedores] = useState([]);
@@ -44,6 +45,15 @@ function CrearProductoPage(params: any) {
         setProveedor(proveedoresData[0]['idproveedor']);
         console.log('Proveedor:', proveedor);
         //console.log('Type:', proveedor);
+      } else {
+        //toast.error('Debe cargar almenos un proveedor')
+        toast('Error', {
+          description: 'Debe cargar almenos un proveedor',
+          action: {
+            label: 'Cerrar',
+            onClick: () => router.push('/compras/productos/listado'),
+          },
+        });
       }
     };
 
@@ -89,11 +99,13 @@ function CrearProductoPage(params: any) {
         const res = await IProd.createProducto(producto)
           .then((data) => {
             console.log(data);
-            alert('Producto creado con éxito');
+            //alert('Producto creado con éxito');
+            toast.success('Producto creado con éxito');
           })
           .catch((err) => {
             console.log(err);
-            alert('Error al crear el producto');
+            //alert('Error al crear el producto');
+            toast.error('Error al crear el producto');
           });
         console.log(res);
       }
