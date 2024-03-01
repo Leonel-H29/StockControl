@@ -84,38 +84,28 @@ function CrearProductoPage(params: any) {
 
       if (params.params.id) {
         // Actualizo el registro
-        const res = await IProd.updateProducto(params.params.id, producto)
-          .then((data) => {
-            console.log(data);
-            alert('Producto actualizado con éxito');
-          })
-          .catch((err) => {
-            console.log(err);
-            alert('Error al actualizar el producto');
-          });
-        console.log(res);
+
+        toast.promise(IProd.updateProducto(params.params.id, producto), {
+          success: 'Producto actualizado con éxito',
+          error: 'Error al actualizar el producto',
+          loading: 'Guardando cambios ...',
+        });
       } else {
         // Creo el registro
-        const res = await IProd.createProducto(producto)
-          .then((data) => {
-            console.log(data);
-            //alert('Producto creado con éxito');
-            toast.success('Producto creado con éxito');
-          })
-          .catch((err) => {
-            console.log(err);
-            //alert('Error al crear el producto');
-            toast.error('Error al crear el producto');
-          });
-        console.log(res);
+
+        toast.promise(IProd.createProducto(producto), {
+          success: 'Producto creado con éxito',
+          error: 'Error al crear el producto',
+          loading: 'Guardando cambios ...',
+        });
       }
       // Reset form or redirect
     } catch (error) {
-      alert('Error al crear el producto');
+      toast.error('Error al crear el producto');
       console.error(error);
     } finally {
-      router.refresh();
       router.push('/compras/productos/listado');
+      router.refresh();
     }
   };
 

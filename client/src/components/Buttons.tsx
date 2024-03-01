@@ -2,6 +2,7 @@
 import { productosService } from '@/services/productosService';
 import { proveedorService } from '@/services/proveedorSevice';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 export function ButtonsRefreshComponents(params: { component: string }) {
   const Iprod = new productosService();
@@ -85,9 +86,9 @@ export function ButtonsTableComponents(params: { id: any; component: string }) {
   const Iprod = new productosService();
   const IProv = new proveedorService();
   const Editar = () => {
-    console.log('id:', params.id);
-    console.log('component: ', params.component);
-    router.refresh();
+    // console.log('id:', params.id);
+    // console.log('component: ', params.component);
+    //router.refresh();
     if (params.component === 'producto') {
       router.push(`/compras/productos/editar/${params.id}`);
       router.refresh();
@@ -98,25 +99,50 @@ export function ButtonsTableComponents(params: { id: any; component: string }) {
   };
 
   const Delete = async () => {
-    if (confirm('¿Desea eliminar el registro?')) {
-      if (params.component === 'producto') {
-        await Iprod.deleteProducto(params.id)
-          .then(() => {
-            alert('Producto eliminado exitosamente!');
-          })
-          .catch(() => console.log('Error al eliminar el dato'));
-
-        router.push('/compras/productos/listado/');
-        router.refresh();
-      } else {
-        await IProv.deleteProveedor(params.id)
-          .then(() => {
-            alert('Proveedor eliminado exitosamente!');
-          })
-          .catch(() => console.log('Error al eliminar el dato'));
-        router.push('/compras/proveedores/listado/');
-        router.refresh();
-      }
+    if (params.component === 'producto') {
+      toast('¿Desea eliminar el registro?', {
+        style: {
+          padding: '2rem',
+          fontSize: '1.2rem',
+        },
+        position: 'top-center',
+        action: {
+          label: 'Aceptar',
+          onClick: () => {
+            toast.promise(Iprod.deleteProducto(params.id), {
+              success: 'Producto eliminado exitosamente!',
+              error: 'Error al eliminar el producto',
+              loading: 'Guardando cambios ...',
+            });
+            router.push('/compras/productos/listado/');
+            router.refresh();
+          },
+        },
+        cancel: {
+          label: 'Cancelar',
+          onClick: () => toast.dismiss(),
+        },
+      });
+    } else {
+      toast('¿Desea eliminar el registro?', {
+        position: 'top-center',
+        action: {
+          label: 'Aceptar',
+          onClick: () => {
+            toast.promise(IProv.deleteProveedor(params.id), {
+              success: 'Proveedor eliminado exitosamente!',
+              error: 'Error al eliminar el proveedor',
+              loading: 'Guardando cambios ...',
+            });
+            router.push('/compras/proveedores/listado/');
+            router.refresh();
+          },
+        },
+        cancel: {
+          label: 'Cancelar',
+          onClick: () => toast.dismiss(),
+        },
+      });
     }
   };
 

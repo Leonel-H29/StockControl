@@ -43,39 +43,28 @@ export default function CrearProveedorPage(params: any) {
 
       if (params.params.id) {
         // Actualizo el registro
-        const res = await IProv.updateProveedor(params.params.id, proveedor)
-          .then((data) => {
-            console.log(data);
-            //alert('Proveedor actualizado con éxito');
-            toast.success('Proveedor actualizado con éxito');
-          })
-          .catch((err) => {
-            console.log(err);
-            //alert('Error al actualizar el proveedor');
-            toast.error('Error al actualizar el proveedor');
-          });
-        console.log(res);
+
+        toast.promise(IProv.updateProveedor(params.params.id, proveedor), {
+          success: 'Proveedor actualizado con éxito',
+          error: 'Error al actualizar el proveedor',
+          loading: 'Guardando cambios ...',
+        });
       } else {
-        const res = await IProv.createProveedor(proveedor)
-          .then((data) => {
-            console.log(data);
-            //alert('Proveedor creado con éxito');
-            toast.success('Proveedor creado con éxito');
-          })
-          .catch((err) => {
-            console.log(err);
-            //alert('Error al crear el proveedor');
-            toast.error('Error al crear el proveedor');
-          });
-        console.log(res);
+        // Creo el registro
+
+        toast.promise(IProv.createProveedor(proveedor), {
+          success: 'Proveedor creado con éxito',
+          error: 'Error al crear el proveedor',
+          loading: 'Guardando cambios ...',
+        });
       }
     } catch (error) {
       //alert('Error al crear el proveedor');
-      console.error(error);
       toast.error('Error al crear el proveedor');
+      console.error(error);
     } finally {
-      router.refresh();
       router.push('/compras/proveedores/listado');
+      router.refresh();
     }
   };
 
