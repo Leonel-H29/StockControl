@@ -3,6 +3,45 @@ import { productosService } from '@/services/productosService';
 import { proveedorService } from '@/services/proveedorSevice';
 import { useRouter } from 'next/navigation';
 
+export function ButtonsRefreshComponents(params: { component: string }) {
+  const Iprod = new productosService();
+  const IProv = new proveedorService();
+  //const router = useRouter();
+  const component = params.component;
+
+  return (
+    <div>
+      <button
+        className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        type="button"
+        title={`Agregar ${component}`}
+        onClick={async () => {
+          if (component === 'producto') {
+            await Iprod.getProductos();
+          } else {
+            await IProv.getProveedores();
+          }
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+          />
+        </svg>
+      </button>
+    </div>
+  );
+}
+
 export function ButtonsCreateComponents(params: { component: string }) {
   const router = useRouter();
   const component = params.component;
@@ -51,8 +90,10 @@ export function ButtonsTableComponents(params: { id: any; component: string }) {
     router.refresh();
     if (params.component === 'producto') {
       router.push(`/compras/productos/editar/${params.id}`);
+      router.refresh();
     } else {
       router.push(`/compras/proveedores/editar/${params.id}`);
+      router.refresh();
     }
   };
 

@@ -74,7 +74,6 @@ function CrearProductoPage(params: any) {
 
       if (params.params.id) {
         // Actualizo el registro
-
         const res = await IProd.updateProducto(params.params.id, producto)
           .then((data) => {
             console.log(data);
@@ -86,6 +85,7 @@ function CrearProductoPage(params: any) {
           });
         console.log(res);
       } else {
+        // Creo el registro
         const res = await IProd.createProducto(producto)
           .then((data) => {
             console.log(data);
@@ -96,17 +96,7 @@ function CrearProductoPage(params: any) {
             alert('Error al crear el producto');
           });
         console.log(res);
-
-        /*
-        console.log(res);
-        if (res.status === 201) {
-          alert('Producto creado con éxito');
-        } else {
-          alert('Error al crear el producto');
-        }
-        */
       }
-
       // Reset form or redirect
     } catch (error) {
       alert('Error al crear el producto');
