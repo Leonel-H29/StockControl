@@ -1,8 +1,8 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework import routers
 from Compra.urls import router as routerCompras
-
+from .views import login, register
 
 class DefaultRouter(routers.DefaultRouter):
     """
@@ -27,4 +27,6 @@ url = 'api/'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(url, include(router.urls)),
+    re_path('login', login),
+    re_path('register', register)
 ]
