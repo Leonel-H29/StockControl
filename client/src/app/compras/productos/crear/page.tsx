@@ -5,6 +5,7 @@ import { productosService } from '@/services/productosService';
 import { proveedorService } from '@/services/proveedorSevice';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+//import tokenService from '@/services/tokenService';
 
 function CrearProductoPage(params: any) {
   const [proveedores, setProveedores] = useState([]);
@@ -17,6 +18,14 @@ function CrearProductoPage(params: any) {
   const IProd = new productosService();
 
   const router = useRouter();
+  /*
+  useEffect(() => {
+    if (!tokenService.isLogged()) {
+      router.push('/login');
+      router.refresh();
+    }
+  });
+  */
 
   useEffect(() => {
     console.log(params.params);

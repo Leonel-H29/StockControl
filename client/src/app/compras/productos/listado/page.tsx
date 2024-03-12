@@ -3,8 +3,16 @@ import {
   ButtonsCreateComponents,
 } from '@/components/Buttons';
 import { productosService } from '@/services/productosService';
+// import { cookies } from 'next/headers';
 
 async function ListadoProductosPage() {
+  /*
+  const getToken = async () => {
+    return cookies().get('token');
+  };
+  console.log(await getToken());
+| */
+
   const Iprod = new productosService();
   const productos: [] = await Iprod.getProductos();
   console.log(productos);
@@ -20,29 +28,6 @@ async function ListadoProductosPage() {
           </div>
           <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
             <ButtonsCreateComponents component="producto" />
-            {/*
-            <button
-              className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-              type="button"
-              //onClick={() => window.location.href='/compras/productos/crear/'}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
-              </svg>
-              PRODUCTO
-            </button>
-            */}
           </div>
         </div>
       </div>

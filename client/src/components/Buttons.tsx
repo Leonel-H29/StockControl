@@ -128,6 +128,7 @@ export function ButtonsTableComponents(params: { id: any; component: string }) {
         position: 'top-center',
         action: {
           label: 'Aceptar',
+
           onClick: () => {
             toast.promise(IProv.deleteProveedor(params.id), {
               success: 'Proveedor eliminado exitosamente!',

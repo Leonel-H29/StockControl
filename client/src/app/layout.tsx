@@ -3,9 +3,12 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import NavBar from '@/components/Navbar';
 import { Toaster } from 'sonner';
+import cookieServiceServer from '@/services/cookieServiceServer';
 
 const inter = Inter({ subsets: ['latin'] });
 export const dynamic = 'force-dynamic';
+
+//console.log('TOKEN: ', cookieServiceServer.getToken());
 
 export const metadata: Metadata = {
   title: 'Stock Control',
@@ -21,14 +24,6 @@ export default function RootLayout({
     <html lang="es">
       <body className={inter.className}>
         <NavBar />
-
-        <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-              Dashboard
-            </h1>
-          </div>
-        </header>
 
         <main>
           <br />
