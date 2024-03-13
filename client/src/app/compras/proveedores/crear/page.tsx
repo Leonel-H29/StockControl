@@ -3,24 +3,16 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { proveedorService } from '@/services/proveedorSevice';
 import { toast } from 'sonner';
-//import tokenService from '@/services/tokenService';
+import useLogged from '@/hook/useLogged';
 
 export default function CrearProveedorPage(params: any) {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [cuit, setCuit] = useState('');
+  const { logged } = useLogged();
 
   const IProv = new proveedorService();
   const router = useRouter();
-
-  /*
-  useEffect(() => {
-    if (!tokenService.isLogged()) {
-      router.push('/login');
-      router.refresh();
-    }
-  });
-  */
 
   useEffect(() => {
     console.log(params.params);
@@ -77,6 +69,9 @@ export default function CrearProveedorPage(params: any) {
       router.refresh();
     }
   };
+  if (!logged) {
+    return router.push('/login');
+  }
 
   return (
     <>

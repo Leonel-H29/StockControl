@@ -39,6 +39,7 @@ export default function LoginFormPage() {
         .then((data) => {
           //console.log('Data ', data);
           router.push('/');
+          router.refresh();
         })
         .catch((error) => {
           console.log(error.message);

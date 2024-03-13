@@ -5,6 +5,7 @@ import { productosService } from '@/services/productosService';
 import { proveedorService } from '@/services/proveedorSevice';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import useLogged from '@/hook/useLogged';
 //import tokenService from '@/services/tokenService';
 
 function CrearProductoPage(params: any) {
@@ -13,19 +14,12 @@ function CrearProductoPage(params: any) {
   const [precio, setPrecio] = useState('');
   const [stockActual, setStockActual] = useState('');
   const [proveedor, setProveedor] = useState('');
+  const { logged } = useLogged();
 
   const IProv = new proveedorService();
   const IProd = new productosService();
 
   const router = useRouter();
-  /*
-  useEffect(() => {
-    if (!tokenService.isLogged()) {
-      router.push('/login');
-      router.refresh();
-    }
-  });
-  */
 
   useEffect(() => {
     console.log(params.params);
@@ -69,16 +63,6 @@ function CrearProductoPage(params: any) {
     cargarProveedores();
   }, []);
 
-  /* 
-  useEffect(() => {
-    if (proveedores) {
-      setProveedor(proveedores[0]['idproveedor']);
-      console.log('Proveedor:', proveedor);
-      //console.log('Type:', proveedor);
-    }
-  });
-  */
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -117,6 +101,10 @@ function CrearProductoPage(params: any) {
       router.refresh();
     }
   };
+
+  if (!logged) {
+    return router.push('/login');
+  }
 
   return (
     <>
@@ -218,6 +206,32 @@ function CrearProductoPage(params: any) {
                       </option>
                     ))}
                   </select>
+
+                  <br />
+
+                  {proveedores.length == 0 && (
+                    <div
+                      className="flex bg-yellow-100 rounded-lg p-4 mb-4 text-sm text-yellow-700"
+                      role="alert"
+                    >
+                      <svg
+                        className="w-5 h-5 inline mr-3"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                      <div>
+                        <span className="font-medium">Advertencia!</span> Debe
+                        registrar al menos un proveedor.
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
