@@ -1,38 +1,25 @@
-import { ButtonsCreateComponents } from '@/components/Buttons';
-import TableProductos from '@/components/TableProductos';
-//import { productosService } from '@/services/productosService';
-// import { cookies } from 'next/headers';
+'use client';
 
-async function ListadoProductosPage() {
-  /*
-  const getToken = async () => {
-    return cookies().get('token');
-  };
-  console.log(await getToken());
-| */
+import { productosService } from '@/services/productosService';
+import { useEffect, useState } from 'react';
+import { ButtonsTableComponents } from './Buttons';
 
-  //const Iprod = new productosService();
+export default function TableProductos() {
+  const [productos, setProductos] = useState([]);
+
+  const Iprod = new productosService();
   //const productos: [] = await Iprod.getProductos();
-  //console.log(productos);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await Iprod.getProductos();
+      setProductos(data);
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
-      <div className="rounded-t mb-0 px-4 py-3 border-0">
-        <div className="flex flex-wrap items-center">
-          <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-            <h1 className="font-semibold text-base text-blueGray-700">
-              Listado de productos
-            </h1>
-          </div>
-          <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-            <ButtonsCreateComponents component="producto" />
-          </div>
-        </div>
-      </div>
-      <TableProductos />
-
-      {/* 
-
       <div className="block w-full overflow-x-auto">
         <table className="items-center bg-transparent w-full border-collapse ">
           <thead>
@@ -90,10 +77,6 @@ async function ListadoProductosPage() {
         <div>Cantidad de productos: </div>
         <div className="text-blue-600">{productos.length}</div>
       </div>
-
-      */}
     </>
   );
 }
-
-export default ListadoProductosPage;

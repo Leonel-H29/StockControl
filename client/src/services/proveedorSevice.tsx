@@ -1,4 +1,7 @@
+'use client';
+
 import axios from 'axios';
+import cookieServiceClient from './cookieServiceClient';
 const baseUrl = 'http://localhost:8000/api/proveedores/';
 
 export class proveedorService {
@@ -7,7 +10,12 @@ export class proveedorService {
     const response = await fetch(baseUrl);
     return await response.json();
     */
-    const response = await axios.get(baseUrl);
+    const response = await axios.get(baseUrl, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${cookieServiceClient.getToken()}`,
+      },
+    });
     return await response.data;
   };
 
@@ -16,7 +24,12 @@ export class proveedorService {
     const response = await fetch(`${baseUrl}${id}/`);
     return await response.json();
     */
-    const response = await axios.get(`${baseUrl}${id}/`);
+    const response = await axios.get(`${baseUrl}${id}/`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${cookieServiceClient.getToken()}`,
+      },
+    });
     return await response.data;
   };
 
@@ -34,6 +47,7 @@ export class proveedorService {
     return await axios.post(baseUrl, proveedor, {
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Token ${cookieServiceClient.getToken()}`,
       },
     });
   };
@@ -52,6 +66,7 @@ export class proveedorService {
     return await axios.put(`${baseUrl}${id}/`, proveedor, {
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Token ${cookieServiceClient.getToken()}`,
       },
     });
   };
@@ -69,6 +84,7 @@ export class proveedorService {
     return await axios.delete(`${baseUrl}${id}/`, {
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Token ${cookieServiceClient.getToken()}`,
       },
     });
   };

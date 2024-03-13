@@ -1,5 +1,8 @@
+'use client';
+
 import axios from 'axios';
 //import { getToken } from './cookieServiceServer';
+import cookieServiceClient from './cookieServiceClient';
 
 const baseUrl = 'http://localhost:8000/api/productos/';
 
@@ -12,6 +15,7 @@ export class productosService {
     const response = await axios.get(baseUrl, {
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Token ${cookieServiceClient.getToken()}`,
       },
     });
     return await response.data;
@@ -25,7 +29,7 @@ export class productosService {
     const response = await axios.get(`${baseUrl}${id}/`, {
       headers: {
         'Content-Type': 'application/json',
-        //Authorization: `Token ${tokenService.getToken()}`,
+        Authorization: `Token ${cookieServiceClient.getToken()}`,
       },
     });
     return await response.data;
@@ -45,7 +49,7 @@ export class productosService {
     return await axios.post(baseUrl, producto, {
       headers: {
         'Content-Type': 'application/json',
-        //Authorization: `Token ${tokenService.getToken()}`,
+        Authorization: `Token ${cookieServiceClient.getToken()}`,
       },
     });
   };
@@ -65,7 +69,7 @@ export class productosService {
     return await axios.put(`${baseUrl}${id}/`, producto, {
       headers: {
         'Content-Type': 'application/json',
-        //Authorization: `Token ${tokenService.getToken()}`,
+        Authorization: `Token ${cookieServiceClient.getToken()}`,
       },
     });
   };
@@ -83,7 +87,7 @@ export class productosService {
     return await axios.delete(`${baseUrl}${id}/`, {
       headers: {
         'Content-Type': 'application/json',
-        //Authorization: `Token ${tokenService.getToken()}`,
+        Authorization: `Token ${cookieServiceClient.getToken()}`,
       },
     });
   };
