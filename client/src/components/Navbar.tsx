@@ -5,9 +5,10 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import useLogged from '@/hook/useLogged';
 import useUsername from '@/hook/useUsername';
 import { usePathname } from 'next/navigation';
-
+import { useRouter } from 'next/navigation';
+import cookieServiceClient from '@/services/cookieServiceClient';
 const navigation = [
-  { name: 'Home', href: '/', current: true },
+  { name: 'Home', href: '/home', current: true },
   { name: 'Productos', href: '/compras/productos/listado', current: false },
   {
     name: 'Proveedores',
@@ -16,18 +17,18 @@ const navigation = [
   },
 ];
 
-const userNavigation = [
-  //{ name: 'Your Profile', href: '#' },
-  //{ name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-];
+// const userNavigation = [
+//   //{ name: 'Your Profile', href: '#' },
+//   //{ name: 'Settings', href: '#' },
+//   //{ name: 'Sign out', href: '#' },
+// ];
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
 }
 
 export default function NavBar() {
-  //const [logged, SetLogged] = useState(false);
+  const router = useRouter();
   const { logged } = useLogged();
 
   const { username } = useUsername();
@@ -37,6 +38,13 @@ export default function NavBar() {
     email: 'tom@example.com',
     imageUrl:
       'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  };
+
+  const BackToLogin = () => {
+    cookieServiceClient.Logout();
+    router.push('/login');
+    location.reload();
+    //router.refresh();
   };
 
   const OptionNavSelected = (Location: string) => {
@@ -106,11 +114,24 @@ export default function NavBar() {
                   <div className="ml-4 flex items-center md:ml-6">
                     <button
                       type="button"
+                      onClick={() => BackToLogin()}
                       className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
-                      <span className="absolute -inset-1.5" />
-                      <span className="sr-only">View notifications</span>
-                      <BellIcon className="h-6 w-6" aria-hidden="true" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m15 15 6-6m0 0-6-6m6 6H9a6 6 0 0 0 0 12h3"
+                        />
+                      </svg>
+                      Logout
                     </button>
 
                     {/* Profile dropdown */}
@@ -126,33 +147,6 @@ export default function NavBar() {
                           />
                         </Menu.Button>
                       </div>
-                      <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
-                      >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                          {userNavigation.map((item) => (
-                            <Menu.Item key={item.name}>
-                              {({ active }) => (
-                                <a
-                                  href={item.href}
-                                  className={classNames(
-                                    active ? 'bg-gray-100' : '',
-                                    'block px-4 py-2 text-sm text-gray-700'
-                                  )}
-                                >
-                                  {item.name}
-                                </a>
-                              )}
-                            </Menu.Item>
-                          ))}
-                        </Menu.Items>
-                      </Transition>
                     </Menu>
                   </div>
                 </div>
@@ -204,24 +198,25 @@ export default function NavBar() {
                   </div>
                   <button
                     type="button"
+                    onClick={() => BackToLogin()}
                     className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
-                    <span className="absolute -inset-1.5" />
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-                </div>
-                <div className="mt-3 space-y-1 px-2">
-                  {userNavigation.map((item) => (
-                    <Disclosure.Button
-                      key={item.name}
-                      as="a"
-                      href={item.href}
-                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-6 h-6"
                     >
-                      {item.name}
-                    </Disclosure.Button>
-                  ))}
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m15 15 6-6m0 0-6-6m6 6H9a6 6 0 0 0 0 12h3"
+                      />
+                    </svg>
+                    Logout
+                  </button>
                 </div>
               </div>
             </Disclosure.Panel>

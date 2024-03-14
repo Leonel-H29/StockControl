@@ -69,9 +69,9 @@ export default function CrearProveedorPage(params: any) {
       router.refresh();
     }
   };
-  if (!logged) {
-    return router.push('/login');
-  }
+  // if (!logged) {
+  //   return router.push('/login');
+  // }
 
   return (
     <>

@@ -9,9 +9,9 @@ async function ListadoProveedoresPage() {
   const router = useRouter();
   const { logged } = useLogged();
 
-  if (!logged) {
-    return router.push('/login');
-  }
+  // if (!logged) {
+  //   return router.push('/login');
+  // }
 
   return (
     <>

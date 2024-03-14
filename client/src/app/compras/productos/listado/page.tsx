@@ -9,9 +9,9 @@ async function ListadoProductosPage() {
   const { logged } = useLogged();
   const router = useRouter();
 
-  if (!logged) {
-    return router.push('/login');
-  }
+  // if (!logged) {
+  //   return router.push('/login');
+  // }
 
   return (
     <>

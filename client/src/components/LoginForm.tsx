@@ -38,8 +38,8 @@ export default function LoginFormPage() {
         .Login(user)
         .then((data) => {
           //console.log('Data ', data);
-          router.push('/');
-          router.refresh();
+          router.push('/home');
+          location.reload();
         })
         .catch((error) => {
           console.log(error.message);
