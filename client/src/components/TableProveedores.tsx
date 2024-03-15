@@ -8,7 +8,6 @@ export default function TableProveedores() {
   const [proveedores, setProveedores] = useState([]);
 
   const Iprov = new proveedorService();
-  //const productos: [] = await Iprod.getProductos();
 
   useEffect(() => {
     const fetchData = async () => {

@@ -28,7 +28,8 @@ export async function middleware(request: NextRequest) {
   // En caso de que este logueado y quiera acceder a la pagina de login y crear usuario
   if (
     value &&
-    (requestedPage.startsWith('/login') || requestedPage.startsWith('/create'))
+    (requestedPage.startsWith('/login') ||
+      requestedPage.startsWith('/register'))
   ) {
     const url = request.nextUrl.clone();
     url.pathname = `/home`;

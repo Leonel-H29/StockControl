@@ -5,8 +5,6 @@ import { productosService } from '@/services/productosService';
 import { proveedorService } from '@/services/proveedorSevice';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import useLogged from '@/hook/useLogged';
-//import tokenService from '@/services/tokenService';
 
 function CrearProductoPage(params: any) {
   const [proveedores, setProveedores] = useState([]);
@@ -14,7 +12,6 @@ function CrearProductoPage(params: any) {
   const [precio, setPrecio] = useState('');
   const [stockActual, setStockActual] = useState('');
   const [proveedor, setProveedor] = useState('');
-  const { logged } = useLogged();
 
   const IProv = new proveedorService();
   const IProd = new productosService();
@@ -23,7 +20,6 @@ function CrearProductoPage(params: any) {
 
   useEffect(() => {
     console.log(params.params);
-    //console.log('Id: ', params.id);
     const id = params.params.id; // Accede a id dentro de params
     console.log('Id: ', id);
     if (id) {
@@ -46,8 +42,6 @@ function CrearProductoPage(params: any) {
       setProveedores(proveedoresData);
       if (proveedoresData) {
         setProveedor(proveedoresData[0]['idproveedor']);
-        console.log('Proveedor:', proveedor);
-        //console.log('Type:', proveedor);
       } else {
         //toast.error('Debe cargar almenos un proveedor')
         toast('Error', {
@@ -101,10 +95,6 @@ function CrearProductoPage(params: any) {
       router.refresh();
     }
   };
-
-  // if (!logged) {
-  //   return router.push('/login');
-  // }
 
   return (
     <>

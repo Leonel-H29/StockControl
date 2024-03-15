@@ -8,8 +8,6 @@ import Loading from './loading';
 const inter = Inter({ subsets: ['latin'] });
 export const dynamic = 'force-dynamic';
 
-//console.log('TOKEN: ', cookieServiceServer.getToken());
-
 export const metadata: Metadata = {
   title: 'Stock Control',
   description: 'Aplicacion desarrollada con Django Rest Framework + NextJs',

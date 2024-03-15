@@ -8,7 +8,6 @@ export default function TableProductos() {
   const [productos, setProductos] = useState([]);
 
   const Iprod = new productosService();
-  //const productos: [] = await Iprod.getProductos();
 
   useEffect(() => {
     const fetchData = async () => {

@@ -3,20 +3,16 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { proveedorService } from '@/services/proveedorSevice';
 import { toast } from 'sonner';
-import useLogged from '@/hook/useLogged';
 
 export default function CrearProveedorPage(params: any) {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [cuit, setCuit] = useState('');
-  const { logged } = useLogged();
 
   const IProv = new proveedorService();
   const router = useRouter();
 
   useEffect(() => {
-    console.log(params.params);
-    //console.log('Id: ', params.id);
     const id = params.params.id; // Accede a id dentro de params
     console.log('Id: ', id);
     if (id) {
@@ -69,9 +65,6 @@ export default function CrearProveedorPage(params: any) {
       router.refresh();
     }
   };
-  // if (!logged) {
-  //   return router.push('/login');
-  // }
 
   return (
     <>

@@ -1,6 +1,5 @@
 'use client';
 import axios from 'axios';
-//import tokenService from './tokenService';
 import cookieServiceClient from './cookieServiceClient';
 
 const baseUrl = 'http://localhost:8000/api/';
@@ -16,7 +15,6 @@ class userService {
       console.log(userData);
 
       cookieServiceClient.setCookie(userData);
-      //tokenServiceClient.setUsername(result.username);
     });
   };
 

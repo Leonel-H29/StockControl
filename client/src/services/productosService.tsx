@@ -1,7 +1,6 @@
 'use client';
 
 import axios from 'axios';
-//import { getToken } from './cookieServiceServer';
 import cookieServiceClient from './cookieServiceClient';
 
 const baseUrl = 'http://localhost:8000/api/productos/';

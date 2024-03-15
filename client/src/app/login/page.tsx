@@ -31,7 +31,7 @@ export default function LoginPage() {
           <p className="mt-10 text-center text-sm text-white-500">
             ¿No es miembro?{' '}
             <a
-              href="#"
+              href="/register"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
               Crear una nueva cuenta

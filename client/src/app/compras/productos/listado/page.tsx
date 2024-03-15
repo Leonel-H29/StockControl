@@ -2,17 +2,8 @@
 
 import { ButtonsCreateComponents } from '@/components/Buttons';
 import TableProductos from '@/components/TableProductos';
-import useLogged from '@/hook/useLogged';
-import { useRouter } from 'next/navigation';
 
 async function ListadoProductosPage() {
-  const { logged } = useLogged();
-  const router = useRouter();
-
-  // if (!logged) {
-  //   return router.push('/login');
-  // }
-
   return (
     <>
       <div className="rounded-t mb-0 px-4 py-3 border-0">

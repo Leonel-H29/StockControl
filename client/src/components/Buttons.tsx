@@ -86,9 +86,6 @@ export function ButtonsTableComponents(params: { id: any; component: string }) {
   const Iprod = new productosService();
   const IProv = new proveedorService();
   const Editar = () => {
-    // console.log('id:', params.id);
-    // console.log('component: ', params.component);
-    //router.refresh();
     if (params.component === 'producto') {
       router.push(`/compras/productos/editar/${params.id}`);
       router.refresh();
