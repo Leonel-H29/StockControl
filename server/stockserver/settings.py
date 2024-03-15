@@ -29,6 +29,7 @@ LOCAL_APPS = [
 ]
 
 INSTALLED_APPS = [
+    # CORS
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -36,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Swagger
+    'drf_yasg',
+    # Djoser
+    'djoser',
+    # Logger
+    'drf_api_logger'
 ] + DRF + LOCAL_APPS
 
 MIDDLEWARE = [

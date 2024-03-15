@@ -24,11 +24,23 @@ Los endpoints disponibles en el backend son los siguientes:
   - Eliminar un producto: `DELETE /api/productos/{id}/`
 
 - **Proveedores**:
+
   - Listar todos los proveedores: `GET /api/proveedores/`
   - Crear un nuevo proveedor: `POST /api/proveedores/`
   - Obtener detalles de un proveedor: `GET /api/proveedores/{id}/`
   - Actualizar un proveedor: `PUT /api/proveedores/{id}/`
   - Eliminar un proveedor: `DELETE /api/proveedores/{id}/`
+
+- **Usuarios**:
+  - Registrar un nuevo usuario: `POST /api/register/`
+  - Iniciar sesión: `POST /api/login/`
+
+Para probar los endpoints en Swagger, siga estos pasos:
+
+1. Navegue a `/swagger/` en su navegador para acceder a la interfaz de usuario de Swagger.
+2. Para los endpoints que requieren autenticación, primero debe obtener un token utilizando el endpoint de inicio de sesión (`POST /api/login/`). Deberá proporcionar un nombre de usuario y contraseña válidos en el cuerpo de la solicitud.
+3. Una vez que tenga un token, puede utilizarlo para autenticarse en los endpoints protegidos. En Swagger, haga clic en el botón "Authorize" y escriba "Token " seguido de su token de autenticación en el campo de valor. Asegúrese de incluir el espacio después de "Token".
+4. Ahora puede probar los endpoints protegidos utilizando la interfaz de Swagger, pasando los parámetros necesarios según lo requiera cada endpoint.
 
 ## Panel de Administración de Django
 
@@ -36,13 +48,9 @@ Django proporciona un panel de administración robusto y fácil de usar, que per
 
 Para acceder al panel de administración, primero debe crearse un superusuario utilizando el comando `python manage.py createsuperuser` desde la línea de comandos. Una vez creado, puede acceder al panel visitando `/admin` en su navegador y utilizando las credenciales del superusuario.
 
-
 ![Login Admin](https://github.com/Leonel-H29/StockControl/assets/48606307/aba61f99-5234-44d4-ba69-dd1b37603e8a)
 
-
-
 ![Dashboard](https://github.com/Leonel-H29/StockControl/assets/48606307/534ac2f1-3bc4-47c2-ba64-92ff2ff4ffe3)
-
 
 ### Características Principales:
 
@@ -57,7 +65,6 @@ Para personalizar la visualización de los modelos en el panel de administració
 
 ![Tables](https://github.com/Leonel-H29/StockControl/assets/48606307/2131081a-6e97-4ad9-8dcd-93ef0e1ddacd)
 
-
 ## Vistas del Frontend
 
 Las vistas disponibles en el frontend son las siguientes:
@@ -65,39 +72,28 @@ Las vistas disponibles en el frontend son las siguientes:
 - **Home**: Página de inicio que muestra un mensaje de bienvenida al usuario.
   ![Home](https://github.com/Leonel-H29/StockControl/assets/48606307/3b696886-df0c-4cc9-84cc-9fcda1e1513a)
 
-
 - **Login**: Página para iniciar sesión.
   ![Login](https://github.com/Leonel-H29/StockControl/assets/48606307/7668cd0f-738b-45a5-b7e9-4a78df060668)
-
 
 - **Register**: Página para registrar un nuevo usuario.
   ![Register](https://github.com/Leonel-H29/StockControl/assets/48606307/9b2fc86c-40be-440a-a1c2-bfb41578860d)
 
-
 - **Listado de Productos**: Muestra un listado de todos los productos disponibles.
   ![Listado de Productos](https://github.com/Leonel-H29/StockControl/assets/48606307/e12d42a9-3bbe-4418-918b-9702eeaa1934)
-
-  
 - **Crear Producto**: Formulario para crear un nuevo producto.
   ![Crear Producto](https://github.com/Leonel-H29/StockControl/assets/48606307/d20baf2a-38b9-4457-8e25-ab95a387108f)
-
-
 
 - **Editar Producto**: Formulario para editar un producto existente.
   ![Editar Producto](https://github.com/Leonel-H29/StockControl/assets/48606307/0a3e7ad4-5183-43f4-980e-a1ee4072b3bd)
 
-
 - **Listado de Proveedores**: Muestra un listado de todos los proveedores disponibles.
   ![Listado de Proveedores](https://github.com/Leonel-H29/StockControl/assets/48606307/13c9abc2-cad8-4908-9e06-2ce7e94bbd8f)
-
 
 - **Crear Proveedor**: Formulario para crear un nuevo proveedor.
   ![Crear Proveedor](https://github.com/Leonel-H29/StockControl/assets/48606307/c74716d9-54aa-4f71-83cb-7baa970acfb5)
 
-
 - **Editar Proveedor**: Formulario para editar un proveedor existente.
   ![Editar Proveedor](https://github.com/Leonel-H29/StockControl/assets/48606307/85aca5de-4abe-4dfa-b0f8-362d984ff556)
-
 
 Cada una de estas vistas está diseñada para ser responsiva y fácil de usar, aprovechando las capacidades de Tailwind CSS para crear una interfaz de usuario atractiva y funcional.
 

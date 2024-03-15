@@ -7,8 +7,35 @@ from .serializers import UserSerializer
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+
+
+@swagger_auto_schema(
+        method='post', 
+        request_body=UserSerializer, 
+        responses={
+            status.HTTP_200_OK: openapi.Response('Token generado correctamente', schema=openapi.Schema(type='object', properties={'token': openapi.Schema(type='string', description='Token de autenticación'), 'user': openapi.Schema(type='object', description='Información del usuario')})),
+            status.HTTP_400_BAD_REQUEST: openapi.Response('Usuario no encontrado')
+        
+        }
+)
 @api_view(['POST'])
 def login(request):
+
+    """
+    Iniciar sesión de usuario.
+
+    Genera un token de autenticación para el usuario.
+
+    Se espera recibir un objeto JSON con las siguientes claves:
+    - username: Nombre de usuario del usuario.
+    - password: Contraseña del usuario.
+
+    Retorna un objeto JSON con las siguientes claves:
+    - token: Token de autenticación generado.
+    - user: Información del usuario autenticado.
+    """
 
     print(request.data)
     user= get_object_or_404(User,username=request.data['username'] )
@@ -23,9 +50,31 @@ def login(request):
 
 
 
-
+@swagger_auto_schema(
+        method='post', 
+        request_body=UserSerializer, 
+        responses={
+            status.HTTP_200_OK: openapi.Response('Token generado correctamente', schema=openapi.Schema(type='object', properties={'token': openapi.Schema(type='string', description='Token de autenticación'), 'user': openapi.Schema(type='object', description='Información del usuario')}) ),
+            status.HTTP_400_BAD_REQUEST: openapi.Response('Datos inválidos')
+        }
+)
 @api_view(['POST'])
 def register(request):
+
+    """
+    Registrar nuevo usuario.
+
+    Crea un nuevo usuario con la información proporcionada en el cuerpo de la solicitud.
+
+    Se espera recibir un objeto JSON con las siguientes claves:
+    - username: Nombre de usuario del nuevo usuario.
+    - email: Correo electronico del nuevo usuario.
+    - password: Contraseña del nuevo usuario.
+
+    Retorna un objeto JSON con las siguientes claves:
+    - token: Token de autenticación generado para el nuevo usuario.
+    - user: Información del nuevo usuario registrado.
+    """
 
     serializer = UserSerializer(data=request.data)
 
