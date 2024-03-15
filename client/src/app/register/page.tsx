@@ -24,6 +24,7 @@ export default function RegisterPage() {
             <a
               href="/login"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              title="Iniciar sesión en su cuenta"
             >
               Iniciar sesión en su cuenta
             </a>

@@ -32,6 +32,7 @@ export default function LoginPage() {
             ¿No es miembro?{' '}
             <a
               href="/register"
+              title="Crear una nueva cuenta"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
               Crear una nueva cuenta

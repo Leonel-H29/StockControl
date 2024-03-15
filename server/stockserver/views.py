@@ -16,8 +16,8 @@ from drf_yasg import openapi
         request_body=UserSerializer, 
         responses={
             status.HTTP_200_OK: openapi.Response('Token generado correctamente', schema=openapi.Schema(type='object', properties={'token': openapi.Schema(type='string', description='Token de autenticación'), 'user': openapi.Schema(type='object', description='Información del usuario')})),
-            status.HTTP_400_BAD_REQUEST: openapi.Response('Usuario no encontrado')
-        
+            status.HTTP_400_BAD_REQUEST: openapi.Response('Usuario no encontrado'),
+            status.HTTP_500_INTERNAL_SERVER_ERROR: openapi.Response('Se ha producido un error interno en el servidor')
         }
 )
 @api_view(['POST'])
@@ -37,7 +37,7 @@ def login(request):
     - user: Información del usuario autenticado.
     """
 
-    print(request.data)
+    #print(request.data)
     user= get_object_or_404(User,username=request.data['username'] )
 
     if not user.check_password(request.data['password']):
@@ -54,8 +54,9 @@ def login(request):
         method='post', 
         request_body=UserSerializer, 
         responses={
-            status.HTTP_200_OK: openapi.Response('Token generado correctamente', schema=openapi.Schema(type='object', properties={'token': openapi.Schema(type='string', description='Token de autenticación'), 'user': openapi.Schema(type='object', description='Información del usuario')}) ),
-            status.HTTP_400_BAD_REQUEST: openapi.Response('Datos inválidos')
+            status.HTTP_201_CREATED: openapi.Response('Usuario Creado - Token generado correctamente', schema=openapi.Schema(type='object', properties={'token': openapi.Schema(type='string', description='Token de autenticación'), 'user': openapi.Schema(type='object', description='Información del usuario')}) ),
+            status.HTTP_400_BAD_REQUEST: openapi.Response('Datos inválidos'),
+            status.HTTP_500_INTERNAL_SERVER_ERROR: openapi.Response('Se ha producido un error interno en el servidor')
         }
 )
 @api_view(['POST'])
