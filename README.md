@@ -36,9 +36,13 @@ Django proporciona un panel de administración robusto y fácil de usar, que per
 
 Para acceder al panel de administración, primero debe crearse un superusuario utilizando el comando `python manage.py createsuperuser` desde la línea de comandos. Una vez creado, puede acceder al panel visitando `/admin` en su navegador y utilizando las credenciales del superusuario.
 
-![Login Admin](<Captura desde 2024-03-15 14-19-59.png>)
 
-![Dashboard](<Captura desde 2024-03-15 14-20-14.png>)
+![Login Admin](https://github.com/Leonel-H29/StockControl/assets/48606307/aba61f99-5234-44d4-ba69-dd1b37603e8a)
+
+
+
+![Dashboard](https://github.com/Leonel-H29/StockControl/assets/48606307/534ac2f1-3bc4-47c2-ba64-92ff2ff4ffe3)
+
 
 ### Características Principales:
 
@@ -51,38 +55,49 @@ Para acceder al panel de administración, primero debe crearse un superusuario u
 
 Para personalizar la visualización de los modelos en el panel de administración, puede modificar los archivos `admin.py` dentro de sus aplicaciones. Por ejemplo, para el modelo `Producto`, se ha definido una clase `ProductoAdmin` que especifica cómo se deben mostrar los productos en el panel.
 
-![Tables](<Captura desde 2024-03-15 14-23-04.png>)
+![Tables](https://github.com/Leonel-H29/StockControl/assets/48606307/2131081a-6e97-4ad9-8dcd-93ef0e1ddacd)
+
 
 ## Vistas del Frontend
 
 Las vistas disponibles en el frontend son las siguientes:
 
 - **Home**: Página de inicio que muestra un mensaje de bienvenida al usuario.
-  ![Home](<Captura desde 2024-03-15 14-13-29.png>)
+  ![Home](https://github.com/Leonel-H29/StockControl/assets/48606307/3b696886-df0c-4cc9-84cc-9fcda1e1513a)
+
 
 - **Login**: Página para iniciar sesión.
-  ![Login](<Captura desde 2024-03-15 14-12-48.png>)
+  ![Login](https://github.com/Leonel-H29/StockControl/assets/48606307/7668cd0f-738b-45a5-b7e9-4a78df060668)
+
 
 - **Register**: Página para registrar un nuevo usuario.
-  ![Register](<Captura desde 2024-03-15 14-13-02.png>)
+  ![Register](https://github.com/Leonel-H29/StockControl/assets/48606307/9b2fc86c-40be-440a-a1c2-bfb41578860d)
+
 
 - **Listado de Productos**: Muestra un listado de todos los productos disponibles.
-  ![Listado de Productos](<Captura desde 2024-03-15 14-13-36.png>)
+  ![Listado de Productos](https://github.com/Leonel-H29/StockControl/assets/48606307/e12d42a9-3bbe-4418-918b-9702eeaa1934)
 
+  
 - **Crear Producto**: Formulario para crear un nuevo producto.
-  ![Crear Producto](<Captura desde 2024-03-15 14-26-17.png>)
+  ![Crear Producto](https://github.com/Leonel-H29/StockControl/assets/48606307/d20baf2a-38b9-4457-8e25-ab95a387108f)
+
+
 
 - **Editar Producto**: Formulario para editar un producto existente.
-  ![Editar Producto](<Captura desde 2024-03-15 14-13-56.png>)
+  ![Editar Producto](https://github.com/Leonel-H29/StockControl/assets/48606307/0a3e7ad4-5183-43f4-980e-a1ee4072b3bd)
+
 
 - **Listado de Proveedores**: Muestra un listado de todos los proveedores disponibles.
-  ![Listado de Proveedores](<Captura desde 2024-03-15 14-13-43.png>)
+  ![Listado de Proveedores](https://github.com/Leonel-H29/StockControl/assets/48606307/13c9abc2-cad8-4908-9e06-2ce7e94bbd8f)
+
 
 - **Crear Proveedor**: Formulario para crear un nuevo proveedor.
-  ![Crear Proveedor](<Captura desde 2024-03-15 14-28-13.png>)
+  ![Crear Proveedor](https://github.com/Leonel-H29/StockControl/assets/48606307/c74716d9-54aa-4f71-83cb-7baa970acfb5)
+
 
 - **Editar Proveedor**: Formulario para editar un proveedor existente.
-  ![Editar Proveedor](<Captura desde 2024-03-15 14-14-08.png>)
+  ![Editar Proveedor](https://github.com/Leonel-H29/StockControl/assets/48606307/85aca5de-4abe-4dfa-b0f8-362d984ff556)
+
 
 Cada una de estas vistas está diseñada para ser responsiva y fácil de usar, aprovechando las capacidades de Tailwind CSS para crear una interfaz de usuario atractiva y funcional.
 
